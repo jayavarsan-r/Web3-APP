@@ -696,7 +696,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Your Name**
 
 - GitHub: [@jayavarsan-r](https://github.com/jayavarsan-r)
-- LinkedIn: [Your Name](https://linkedin.com/in/jayavarsan/)
+- LinkedIn: [Jayavarsan R](https://linkedin.com/in/jayavarsan/)
 - Email: jayavarsanr@gmail.com
 
 ---
