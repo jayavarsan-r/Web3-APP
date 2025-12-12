@@ -695,9 +695,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Your Name**
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your Name](https://linkedin.com/in/yourprofile)
-- Email: your-email@example.com
+- GitHub: [@jayavarsan-r](https://github.com/jayavarsan-r)
+- LinkedIn: [Your Name](https://linkedin.com/in/jayavarsan/)
+- Email: jayavarsanr@gmail.com
 
 ---
 
@@ -712,13 +712,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 For issues or questions:
-- 📧 Email: your-email@example.com
+- 📧 Email: jayavarsanr@gmail.com
 - 🐛 [Open an issue](https://github.com/yourusername/task-manager/issues)
 - 💬 [Discussions](https://github.com/yourusername/task-manager/discussions)
 
 ---
 
 <div align="center">
-  <p>Made with ❤️ by Your Name</p>
+  <p>Made with ❤️ by Your Jayavarsan</p>
   <p>⭐ Star this repo if you found it helpful!</p>
 </div>
