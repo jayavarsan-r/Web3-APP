@@ -1,17 +1,25 @@
-# Task Manager - Full-Stack Web Application
+# 📋 Task Manager - Full-Stack Web Application
 
-A production-ready, scalable task management application built with Next.js 16, featuring JWT authentication, CRUD operations, and a modern UI.
+> A production-ready, scalable task management application built with Next.js 16, featuring JWT authentication, CRUD operations, and a modern UI.
 
-## Features
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-3-38bdf8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-336791?style=flat-square&logo=postgresql)](https://neon.tech/)
 
-### Authentication
+---
+
+## ✨ Features
+
+### 🔐 Authentication
 - Secure signup and login with JWT tokens
-- Password hashing with bcrypt
+- Password hashing with bcrypt (10 rounds)
 - HTTP-only cookies for token storage
 - Protected routes with middleware
 - Auto-redirect based on auth state
 
-### Dashboard
+### 📊 Dashboard
 - User profile management
 - Full CRUD operations for tasks
 - Real-time search and filtering
@@ -19,16 +27,18 @@ A production-ready, scalable task management application built with Next.js 16, 
 - Priority levels (low, medium, high)
 - Responsive, modern UI with TailwindCSS
 
-### Security
+### 🔒 Security
 - JWT-based authentication
-- bcrypt password hashing (10 rounds)
+- bcrypt password hashing
 - HTTP-only cookies
 - Input validation (client + server)
 - SQL injection prevention
 - CORS configuration
 - Environment variable management
 
-## Tech Stack
+---
+
+## 🛠️ Tech Stack
 
 ### Frontend
 - **Next.js 16** - React framework with App Router
@@ -45,9 +55,10 @@ A production-ready, scalable task management application built with Next.js 16, 
 - **bcryptjs** - Password hashing
 - **jsonwebtoken** - JWT generation/verification
 
-## Project Structure
+---
 
-\`\`\`
+## 📁 Project Structure
+```
 ├── app/
 │   ├── api/
 │   │   ├── auth/
@@ -74,81 +85,80 @@ A production-ready, scalable task management application built with Next.js 16, 
 │   └── 001_create_tables.sql        # Database schema
 ├── middleware.ts                     # Route protection
 └── package.json
-\`\`\`
+```
 
-## Installation & Setup
+---
+
+## 🚀 Installation & Setup
 
 ### Prerequisites
 - Node.js 18+ installed
-- Neon Postgres database (already connected via Vercel)
+- Neon Postgres database account
 
 ### Environment Variables
 
-The following environment variables are already configured in your Vercel project:
+Create a `.env.local` file in the root directory:
+```bash
+DATABASE_URL=your_neon_database_url
+POSTGRES_URL=your_neon_postgres_url
+JWT_SECRET=your_secret_key_here
+```
 
-\`\`\`bash
-DATABASE_URL=                 # Neon database connection string
-POSTGRES_URL=                 # Alternative Neon connection string
-JWT_SECRET=                   # Secret key for JWT (optional, defaults to development key)
-\`\`\`
-
-**Note:** In production, you should set a strong `JWT_SECRET` environment variable.
+> **⚠️ Important:** In production, always use a strong `JWT_SECRET` environment variable.
 
 ### Local Development
 
 1. **Clone the repository**
-\`\`\`bash
-git clone <your-repo-url>
-cd scalable-web-app
-\`\`\`
+```bash
+git clone https://github.com/yourusername/task-manager.git
+cd task-manager
+```
 
 2. **Install dependencies**
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 3. **Run database migrations**
 
-The database tables will be created automatically when you run the SQL script:
-- Navigate to the v0 interface
-- Execute the script at `scripts/001_create_tables.sql`
-
-Or manually create tables in your Neon dashboard using the SQL from that file.
+Execute the SQL script at `scripts/001_create_tables.sql` in your Neon dashboard or via pgAdmin.
 
 4. **Start the development server**
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 5. **Open your browser**
-\`\`\`
+```
 http://localhost:3000
-\`\`\`
+```
 
-## API Documentation
+---
+
+## 📚 API Documentation
 
 ### Base URL
-\`\`\`
+```
 Development: http://localhost:3000/api
 Production: https://your-domain.vercel.app/api
-\`\`\`
+```
 
 ### Authentication Endpoints
 
-#### POST /auth/signup
+#### `POST /auth/signup`
 Create a new user account.
 
 **Request Body:**
-\`\`\`json
+```json
 {
   "name": "John Doe",
   "email": "john@example.com",
   "password": "SecurePass123"
 }
-\`\`\`
+```
 
 **Response (201):**
-\`\`\`json
+```json
 {
   "message": "User created successfully",
   "user": {
@@ -158,7 +168,7 @@ Create a new user account.
     "createdAt": "2025-01-15T10:30:00Z"
   }
 }
-\`\`\`
+```
 
 **Validation Rules:**
 - Name: minimum 2 characters
@@ -167,19 +177,19 @@ Create a new user account.
 
 ---
 
-#### POST /auth/login
+#### `POST /auth/login`
 Authenticate a user and receive a JWT token.
 
 **Request Body:**
-\`\`\`json
+```json
 {
   "email": "john@example.com",
   "password": "SecurePass123"
 }
-\`\`\`
+```
 
 **Response (200):**
-\`\`\`json
+```json
 {
   "message": "Login successful",
   "user": {
@@ -189,36 +199,36 @@ Authenticate a user and receive a JWT token.
     "createdAt": "2025-01-15T10:30:00Z"
   }
 }
-\`\`\`
+```
 
-**Note:** JWT token is set as HTTP-only cookie (`auth_token`)
+> **Note:** JWT token is set as HTTP-only cookie (`auth_token`)
 
 ---
 
-#### POST /auth/logout
+#### `POST /auth/logout`
 Logout the current user.
 
 **Response (200):**
-\`\`\`json
+```json
 {
   "message": "Logout successful"
 }
-\`\`\`
+```
 
 ---
 
 ### Profile Endpoints
 
-#### GET /profile
+#### `GET /profile`
 Get the authenticated user's profile.
 
 **Headers:**
-\`\`\`
+```
 Cookie: auth_token=<jwt_token>
-\`\`\`
+```
 
 **Response (200):**
-\`\`\`json
+```json
 {
   "user": {
     "id": 1,
@@ -228,28 +238,23 @@ Cookie: auth_token=<jwt_token>
     "updated_at": "2025-01-15T10:30:00Z"
   }
 }
-\`\`\`
+```
 
 ---
 
-#### PUT /profile
+#### `PUT /profile`
 Update the authenticated user's profile.
 
-**Headers:**
-\`\`\`
-Cookie: auth_token=<jwt_token>
-\`\`\`
-
 **Request Body:**
-\`\`\`json
+```json
 {
   "name": "John Smith",
   "email": "john.smith@example.com"
 }
-\`\`\`
+```
 
 **Response (200):**
-\`\`\`json
+```json
 {
   "message": "Profile updated successfully",
   "user": {
@@ -260,19 +265,14 @@ Cookie: auth_token=<jwt_token>
     "updated_at": "2025-01-15T12:00:00Z"
   }
 }
-\`\`\`
+```
 
 ---
 
 ### Task Endpoints
 
-#### GET /tasks
+#### `GET /tasks`
 Get all tasks for the authenticated user with optional filtering.
-
-**Headers:**
-\`\`\`
-Cookie: auth_token=<jwt_token>
-\`\`\`
 
 **Query Parameters:**
 - `search` (optional): Search in title and description
@@ -280,12 +280,12 @@ Cookie: auth_token=<jwt_token>
 - `priority` (optional): Filter by priority (low, medium, high)
 
 **Example:**
-\`\`\`
+```
 GET /api/tasks?search=meeting&status=pending&priority=high
-\`\`\`
+```
 
 **Response (200):**
-\`\`\`json
+```json
 {
   "tasks": [
     {
@@ -299,30 +299,25 @@ GET /api/tasks?search=meeting&status=pending&priority=high
     }
   ]
 }
-\`\`\`
+```
 
 ---
 
-#### POST /tasks
+#### `POST /tasks`
 Create a new task.
 
-**Headers:**
-\`\`\`
-Cookie: auth_token=<jwt_token>
-\`\`\`
-
 **Request Body:**
-\`\`\`json
+```json
 {
   "title": "Complete project",
   "description": "Finish the task manager app",
   "status": "in-progress",
   "priority": "high"
 }
-\`\`\`
+```
 
 **Response (201):**
-\`\`\`json
+```json
 {
   "message": "Task created successfully",
   "task": {
@@ -335,20 +330,15 @@ Cookie: auth_token=<jwt_token>
     "updated_at": "2025-01-15T14:00:00Z"
   }
 }
-\`\`\`
+```
 
 ---
 
-#### GET /tasks/:id
+#### `GET /tasks/:id`
 Get a specific task by ID.
 
-**Headers:**
-\`\`\`
-Cookie: auth_token=<jwt_token>
-\`\`\`
-
 **Response (200):**
-\`\`\`json
+```json
 {
   "task": {
     "id": 1,
@@ -360,30 +350,25 @@ Cookie: auth_token=<jwt_token>
     "updated_at": "2025-01-15T10:30:00Z"
   }
 }
-\`\`\`
+```
 
 ---
 
-#### PUT /tasks/:id
+#### `PUT /tasks/:id`
 Update a specific task.
 
-**Headers:**
-\`\`\`
-Cookie: auth_token=<jwt_token>
-\`\`\`
-
 **Request Body:**
-\`\`\`json
+```json
 {
   "title": "Updated title",
   "description": "Updated description",
   "status": "completed",
   "priority": "medium"
 }
-\`\`\`
+```
 
 **Response (200):**
-\`\`\`json
+```json
 {
   "message": "Task updated successfully",
   "task": {
@@ -396,24 +381,19 @@ Cookie: auth_token=<jwt_token>
     "updated_at": "2025-01-15T15:00:00Z"
   }
 }
-\`\`\`
+```
 
 ---
 
-#### DELETE /tasks/:id
+#### `DELETE /tasks/:id`
 Delete a specific task.
 
-**Headers:**
-\`\`\`
-Cookie: auth_token=<jwt_token>
-\`\`\`
-
 **Response (200):**
-\`\`\`json
+```json
 {
   "message": "Task deleted successfully"
 }
-\`\`\`
+```
 
 ---
 
@@ -421,51 +401,20 @@ Cookie: auth_token=<jwt_token>
 
 All endpoints may return the following error responses:
 
-**400 Bad Request:**
-\`\`\`json
-{
-  "error": "Validation failed",
-  "errors": [
-    {
-      "field": "email",
-      "message": "Please enter a valid email address"
-    }
-  ]
-}
-\`\`\`
+| Status Code | Description | Example Response |
+|------------|-------------|------------------|
+| 400 | Bad Request | `{"error": "Validation failed", "errors": [...]}` |
+| 401 | Unauthorized | `{"error": "Unauthorized"}` |
+| 404 | Not Found | `{"error": "Task not found"}` |
+| 409 | Conflict | `{"error": "User with this email already exists"}` |
+| 500 | Internal Server Error | `{"error": "Internal server error"}` |
 
-**401 Unauthorized:**
-\`\`\`json
-{
-  "error": "Unauthorized"
-}
-\`\`\`
+---
 
-**404 Not Found:**
-\`\`\`json
-{
-  "error": "Task not found"
-}
-\`\`\`
-
-**409 Conflict:**
-\`\`\`json
-{
-  "error": "User with this email already exists"
-}
-\`\`\`
-
-**500 Internal Server Error:**
-\`\`\`json
-{
-  "error": "Internal server error"
-}
-\`\`\`
-
-## Database Schema
+## 💾 Database Schema
 
 ### users table
-\`\`\`sql
+```sql
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
@@ -474,10 +423,10 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-\`\`\`
+```
 
 ### tasks table
-\`\`\`sql
+```sql
 CREATE TABLE tasks (
   id SERIAL PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -488,40 +437,45 @@ CREATE TABLE tasks (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-\`\`\`
+```
 
-## Deployment
+---
+
+## 🚢 Deployment
 
 ### Deploy to Vercel
 
 1. **Push to GitHub**
-\`\`\`bash
+```bash
 git init
 git add .
 git commit -m "Initial commit"
 git branch -M main
 git remote add origin <your-repo-url>
 git push -u origin main
-\`\`\`
+```
 
 2. **Connect to Vercel**
-- Go to [vercel.com](https://vercel.com)
-- Import your GitHub repository
-- The Neon integration is already connected
-- Add environment variables (if needed)
-- Deploy
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Connect Neon database via integration
+   - Add environment variables
+   - Deploy
 
 3. **Environment Variables**
 
 Add these in Vercel dashboard (Settings → Environment Variables):
-- `DATABASE_URL` - Already set via Neon integration
+- `DATABASE_URL` - Your Neon database URL
+- `POSTGRES_URL` - Your Neon Postgres URL
 - `JWT_SECRET` - Your secret key for production
 
 4. **Run Database Migrations**
 
-After deployment, run the SQL script in your Neon dashboard or via the v0 interface.
+After deployment, execute the SQL script in your Neon dashboard.
 
-## Scalability Considerations
+---
+
+## 📈 Scalability Considerations
 
 ### Current Architecture
 - **Serverless Functions**: Each API route runs as a serverless function
@@ -535,8 +489,7 @@ After deployment, run the SQL script in your Neon dashboard or via the v0 interf
 - **Connection Pooling**: Use Neon's pooled connection string
 - **Read Replicas**: Add read replicas for heavy read workloads
 - **Caching**: Implement Redis for session caching
-
-\`\`\`typescript
+```typescript
 // Example Redis caching
 import { Redis } from '@upstash/redis'
 
@@ -547,12 +500,11 @@ const redis = new Redis({
 
 // Cache user profile
 await redis.set(`user:${userId}`, JSON.stringify(user), { ex: 3600 })
-\`\`\`
+```
 
 #### 2. API Rate Limiting
 Implement rate limiting to prevent abuse:
-
-\`\`\`typescript
+```typescript
 import { Ratelimit } from '@upstash/ratelimit'
 
 const ratelimit = new Ratelimit({
@@ -564,7 +516,7 @@ const { success } = await ratelimit.limit(identifier)
 if (!success) {
   return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
 }
-\`\`\`
+```
 
 #### 3. CDN & Edge Caching
 - Deploy static assets to Vercel Edge Network
@@ -573,8 +525,7 @@ if (!success) {
 
 #### 4. Monitoring & Logging
 Implement comprehensive monitoring:
-
-\`\`\`typescript
+```typescript
 // Example: Vercel Analytics
 import { Analytics } from '@vercel/analytics/react'
 
@@ -590,13 +541,10 @@ try {
   })
   // Send to error tracking service (Sentry, etc.)
 }
-\`\`\`
+```
 
 #### 5. Microservices Migration Path
-
-When scaling beyond serverless:
-
-\`\`\`
+```
 Current: Monolithic Next.js App
          ↓
 Step 1: Separate API & Frontend
@@ -616,11 +564,10 @@ Step 4: Container Orchestration
         - Docker containers
         - Kubernetes cluster
         - Load balancing
-\`\`\`
+```
 
 #### 6. Docker Configuration
-
-\`\`\`dockerfile
+```dockerfile
 FROM node:18-alpine AS base
 
 FROM base AS deps
@@ -644,11 +591,10 @@ COPY --from=builder /app/.next/static ./.next/static
 EXPOSE 3000
 ENV PORT 3000
 CMD ["node", "server.js"]
-\`\`\`
+```
 
 #### 7. CI/CD Pipeline
-
-\`\`\`yaml
+```yaml
 # .github/workflows/deploy.yml
 name: Deploy to Production
 
@@ -675,16 +621,10 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-\`\`\`
+```
 
-#### 8. Load Balancing Strategy
-- Use Vercel's automatic load balancing
-- For custom setup: Nginx or AWS ALB
-- Health checks on `/api/health`
-- Circuit breakers for external services
-
-#### 9. Database Scaling
-\`\`\`
+#### 8. Database Scaling
+```
 Current: Single Neon Postgres
          ↓
 Scale: Primary + Read Replicas
@@ -694,9 +634,11 @@ Scale: Primary + Read Replicas
 Advanced: Sharding
           - Shard by user_id
           - Consistent hashing
-\`\`\`
+```
 
-## Security Best Practices
+---
+
+## 🔒 Security Best Practices
 
 1. **Authentication**
    - JWT tokens with 7-day expiration
@@ -717,35 +659,66 @@ Advanced: Sharding
    - Use Vercel's environment variables
    - Rotate JWT secret regularly
 
-## Testing
+---
+
+## 🧪 Testing
 
 ### Run Tests
-\`\`\`bash
+```bash
 npm test
-\`\`\`
+```
 
 ### Test Coverage
 - Unit tests for validation functions
 - Integration tests for API routes
 - E2E tests with Playwright
 
-## Contributing
+---
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## License
+---
 
-MIT License - feel free to use this project for your portfolio or learning!
+## 📄 License
 
-## Support
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-For issues or questions:
-- Open a GitHub issue
+---
+
+## 👤 Author
+
+**Your Name**
+
+- GitHub: [@yourusername](https://github.com/yourusername)
+- LinkedIn: [Your Name](https://linkedin.com/in/yourprofile)
 - Email: your-email@example.com
 
-## Author
+---
 
-Built as a Frontend Developer Intern assignment demonstrating full-stack development skills with modern web technologies.
+## 🙏 Acknowledgments
+
+- Built as a Frontend Developer Intern assignment
+- Demonstrates full-stack development skills with modern web technologies
+- Special thanks to the Next.js and React communities
+
+---
+
+## 📞 Support
+
+For issues or questions:
+- 📧 Email: your-email@example.com
+- 🐛 [Open an issue](https://github.com/yourusername/task-manager/issues)
+- 💬 [Discussions](https://github.com/yourusername/task-manager/discussions)
+
+---
+
+<div align="center">
+  <p>Made with ❤️ by Your Name</p>
+  <p>⭐ Star this repo if you found it helpful!</p>
+</div>
